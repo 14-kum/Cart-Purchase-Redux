@@ -25,8 +25,8 @@ const App = () => {
     <Router>
       <div className="h-screen">
         {/* Store Heading */}
-        <h1 className="text-4xl font-bold text-center mt-8 mb-8 rainbow-text">
-          Product Store
+        <h1 className="text-8xl font-bold text-center mt-8 mb-8 rainbow-text">
+         DS-Mart
         </h1>
 
         {/* Icons for Cart and Purchase History on the Top Right */}

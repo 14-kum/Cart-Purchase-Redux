@@ -4,6 +4,34 @@ import { fetchProducts } from '../features/productSlice';
 import { addToCart, clearCart } from '../features/cartSlice';
 import { FaCartPlus, FaShoppingBag, FaTimes } from 'react-icons/fa';
 
+const categories = [
+  {
+    name: "All",
+    value: "all",
+    image: "src/assets/im.jpg", // Add your images for each category here
+  },
+  {
+    name: "Men's Clothing",
+    value: "men's clothing",
+    image: "src/assets/mens.jpg",
+  },
+  {
+    name: "Women's Clothing",
+    value: "women's clothing",
+    image: "src/assets/img.webp",
+  },
+  {
+    name: "Electronics",
+    value: "electronics",
+    image: "src/assets/imgg.jpg",
+  },
+  {
+    name: "Jewelry",
+    value: "jewelery",
+    image: "src/assets/image.png",
+  },
+];
+
 const ProductList = ({ showCart, showHistory }) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.items);
@@ -61,19 +89,19 @@ const ProductList = ({ showCart, showHistory }) => {
       {/* Filters */}
       <div className="mb-6 flex justify-between items-center">
         {/* Category Filter */}
-        <div>
-          <label className="mr-2 font-semibold">Category:</label>
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="border p-2 rounded"
-          >
-            <option value="all">All</option>
-            <option value="men's clothing">Men's Clothing</option>
-            <option value="women's clothing">Women's Clothing</option>
-            <option value="electronics">Electronics</option>
-            <option value="jewelery">Jewelry</option>
-          </select>
+        <div className="flex space-x-4">
+          {categories.map((category) => (
+            <div
+              key={category.value}
+              className={`p-4 cursor-pointer rounded-lg shadow-md transition duration-200 hover:bg-blue-100 ${
+                selectedCategory === category.value ? 'bg-blue-200' : 'bg-white'
+              }`}
+              onClick={() => setSelectedCategory(category.value)}
+            >
+              <img src={category.image} alt={category.name} className="w-10 h-10 mx-auto mb-2" />
+              <p className="text-center font-semibold text-sm">{category.name}</p>
+            </div>
+          ))}
         </div>
 
         {/* Price Range Filter */}
